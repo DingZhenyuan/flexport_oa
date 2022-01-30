@@ -38,4 +38,26 @@ public class Solution {
         String str = "abcdcaa";
         System.out.println(palindrome(str));
     }
+
+    // tile jumping
+    public boolean jump(int[] tiles) {
+        int next = tiles[0];
+        if (next >= tiles.length - 1)
+            return true;
+        for (int i = 1; i < tiles.length; i++) {
+            if (i > next)
+                return false;
+            next = Math.max(next, i + tiles[i]);
+            if (next >= tiles.length - 1)
+                return true;
+        }
+        return false;
+    }
+
+    public void testJump() {
+        int[] t1 = new int[]{1, 2, 0, 0, 1};
+        int[] t2 = new int[]{5, 0, 0, 0};
+        System.out.println(jump(t1));
+        System.out.println(jump(t2));
+    }
 }
